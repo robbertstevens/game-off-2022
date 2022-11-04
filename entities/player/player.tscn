@@ -1,28 +1,36 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3813yy8mnue2"]
+[gd_scene load_steps=10 format=3 uid="uid://c3813yy8mnue2"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_y3cwq"]
-[ext_resource type="Texture2D" uid="uid://d2b8wyk8bocnw" path="res://assets/characters_packed.png" id="2_qrsju"]
+[ext_resource type="Texture2D" uid="uid://erpppy4e1jq5" path="res://assets/player.png" id="2_kq65h"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4iglf"]
-atlas = ExtResource("2_qrsju")
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1l6x"]
+atlas = ExtResource("2_kq65h")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58igk"]
+atlas = ExtResource("2_kq65h")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aadvh"]
+atlas = ExtResource("2_kq65h")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpbfp"]
+atlas = ExtResource("2_kq65h")
 region = Rect2(0, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tx36n"]
-atlas = ExtResource("2_qrsju")
-region = Rect2(0, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wbn7f"]
-atlas = ExtResource("2_qrsju")
+[sub_resource type="AtlasTexture" id="AtlasTexture_6c5gy"]
+atlas = ExtResource("2_kq65h")
 region = Rect2(24, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qxvd8"]
 animations = [{
-"frames": [SubResource("AtlasTexture_4iglf")],
+"frames": [SubResource("AtlasTexture_d1l6x")],
 "loop": true,
 "name": &"idle",
 "speed": 5.0
 }, {
-"frames": [SubResource("AtlasTexture_tx36n"), SubResource("AtlasTexture_wbn7f")],
+"frames": [SubResource("AtlasTexture_58igk"), SubResource("AtlasTexture_aadvh"), SubResource("AtlasTexture_hpbfp"), SubResource("AtlasTexture_6c5gy")],
 "loop": true,
 "name": &"walk",
 "speed": 5.0
@@ -37,9 +45,12 @@ script = ExtResource("1_y3cwq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 frames = SubResource("SpriteFrames_qxvd8")
-animation = &"idle"
+animation = &"walk"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_1rysj")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true

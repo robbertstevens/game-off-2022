@@ -29,8 +29,8 @@ func _move_state(delta: float) -> int:
     var x = Input.get_axis("left", "right")
     var y = Input.get_axis("up", "down")
 
-    if x > 0: $AnimatedSprite2D.flip_h = true
-    if x < 0: $AnimatedSprite2D.flip_h = false
+    if x > 0: $AnimatedSprite2D.flip_h = false
+    if x < 0: $AnimatedSprite2D.flip_h = true
 
     velocity.x = x * 200
 
