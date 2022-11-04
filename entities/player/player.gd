@@ -21,8 +21,25 @@ func _physics_process(delta: float) -> void:
 
 
 func _move_state(delta: float) -> int:
+    $AnimatedSprite2D.play("walk")
+
     velocity.y += gravity * delta
     velocity.y = min(velocity.y, 300)
+
+    var x = Input.get_axis("left", "right")
+    var y = Input.get_axis("up", "down")
+
+    if x > 0: $AnimatedSprite2D.flip_h = true
+    if x < 0: $AnimatedSprite2D.flip_h = false
+
+    velocity.x = x * 200
+
+    if is_on_floor() && velocity.x == 0:
+        $AnimatedSprite2D.play("idle")
+
+    # Do jump!
+    if is_on_floor() && Input.is_action_just_pressed("jump"):
+        velocity.y = JUMP_VELOCITY
 
     move_and_slide()
 

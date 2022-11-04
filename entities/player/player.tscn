@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3813yy8mnue2"]
+[gd_scene load_steps=8 format=3 uid="uid://c3813yy8mnue2"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_y3cwq"]
 [ext_resource type="Texture2D" uid="uid://d2b8wyk8bocnw" path="res://assets/characters_packed.png" id="2_qrsju"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4iglf"]
+atlas = ExtResource("2_qrsju")
+region = Rect2(0, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tx36n"]
 atlas = ExtResource("2_qrsju")
@@ -13,6 +17,11 @@ region = Rect2(24, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qxvd8"]
 animations = [{
+"frames": [SubResource("AtlasTexture_4iglf")],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
 "frames": [SubResource("AtlasTexture_tx36n"), SubResource("AtlasTexture_wbn7f")],
 "loop": true,
 "name": &"walk",
@@ -28,8 +37,8 @@ script = ExtResource("1_y3cwq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 frames = SubResource("SpriteFrames_qxvd8")
-animation = &"walk"
-frame = 1
+animation = &"idle"
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
