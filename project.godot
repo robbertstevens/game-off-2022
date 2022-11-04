@@ -8,6 +8,16 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Node",
+"class": &"StateManager",
+"language": &"GDScript",
+"path": "res://utils/state_manager.gd"
+}]
+_global_script_class_icons={
+"StateManager": ""
+}
+
 [application]
 
 config/name="Game Off 2022"
