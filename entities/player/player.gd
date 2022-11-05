@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
-enum {MOVE}
+signal player_hurt(pos: Vector2)
+
+enum {MOVE, HURT}
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -23,6 +25,9 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
     state_manager.physics_process(delta)
+
+    if Input.is_action_just_pressed("ui_accept"):
+        emit_signal("player_hurt", global_position)
 
 
 func _move_state(delta: float) -> int:
@@ -56,6 +61,11 @@ func _move_state(delta: float) -> int:
 
     return MOVE
 
+
+func _hurt_state(delta: float) -> int:
+    emit_signal("player_hurt", global_position)
+    return state_manager.previous_state
+
 func _check_can_jump() -> bool:
     var jump_key_is_pressed := Input.is_action_just_pressed("jump")
 
@@ -72,3 +82,6 @@ func _check_can_jump() -> bool:
         return false
 
     return jump_key_is_pressed and is_on_floor()
+
+
+
