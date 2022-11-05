@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d17kg1gux1tan"]
+[gd_scene load_steps=4 format=3 uid="uid://d17kg1gux1tan"]
 
 [ext_resource type="PackedScene" uid="uid://c3813yy8mnue2" path="res://entities/player/player.tscn" id="1_8xfde"]
 [ext_resource type="TileSet" uid="uid://cmjkjpjx5ya5g" path="res://assets/game_tileset.tres" id="2_g64p0"]
+[ext_resource type="PackedScene" uid="uid://burrnvk6dkmit" path="res://entities/coin/coin.tscn" id="3_q4hlc"]
 
 [node name="Game" type="Node2D"]
 
@@ -19,6 +20,9 @@ layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(19, 1245184, 0, 327696, 65539, 6, 262160, 3, 5, 196624, 3, 5, 131087, 65539, 2, 65551, 65539, 0, 65552, 131075, 0, 65553, 131075, 0, 131089, 131075, 2, 131088, 65539, 4, 65554, 196611, 0, 131090, 196611, 2, 524301, 65539, 6, 458765, 3, 4, 393229, 3, 4, 327693, 131075, 6, 327694, 196611, 5, 327695, 196611, 6, 262157, 3, 4, 196621, 3, 5, 131085, 3, 4, 65549, 3, 5, -65524, 65539, 0, 12, 65539, 2, 13, 65539, 4, 14, 196611, 2, -65522, 196611, 0, -65523, 131075, 0)
+
+[node name="Coin" parent="Level" instance=ExtResource("3_q4hlc")]
+position = Vector2(216, 153)
 
 [node name="Player" parent="Level" instance=ExtResource("1_8xfde")]
 position = Vector2(191, 66)
