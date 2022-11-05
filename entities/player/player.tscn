@@ -41,6 +41,7 @@ radius = 9.0
 height = 20.0
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_y3cwq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -54,3 +55,11 @@ shape = SubResource("CapsuleShape2D_1rysj")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="JumpBufferTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
