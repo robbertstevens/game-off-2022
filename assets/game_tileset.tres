@@ -1,7 +1,25 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://cmjkjpjx5ya5g"]
+[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://cmjkjpjx5ya5g"]
 
+[ext_resource type="Texture2D" uid="uid://bbduw3usoraq2" path="res://assets/water_autotile.png" id="1_7x8as"]
 [ext_resource type="Texture2D" uid="uid://15a62xbknaw2" path="res://assets/grass_autotile.png" id="2_4qso5"]
 [ext_resource type="Texture2D" uid="uid://dr84n2uhmxxkv" path="res://assets/tree_autotile.png" id="2_243mm"]
+[ext_resource type="PackedScene" uid="uid://cqbobkrlqm0wi" path="res://entities/spike/spike.tscn" id="3_7jy3v"]
+[ext_resource type="PackedScene" uid="uid://cqic2a4s8ki32" path="res://entities/water/water.tscn" id="4_83kdr"]
+[ext_resource type="PackedScene" uid="uid://burrnvk6dkmit" path="res://entities/coin/coin.tscn" id="6_yjkle"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_em7p3"]
+texture = ExtResource("1_7x8as")
+texture_region_size = Vector2i(18, 18)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tnmd4"]
 texture = ExtResource("2_4qso5")
@@ -435,6 +453,12 @@ texture_region_size = Vector2i(18, 18)
 3:6/0/physics_layer_0/polygon_0/one_way = true
 3:6/0/terrains_peering_bit/left_side = 0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_xixom"]
+resource_name = "Scenes"
+scenes/1/scene = ExtResource("3_7jy3v")
+scenes/2/scene = ExtResource("4_83kdr")
+scenes/3/scene = ExtResource("6_yjkle")
+
 [resource]
 tile_size = Vector2i(18, 18)
 physics_layer_0/collision_layer = 1
@@ -449,3 +473,5 @@ terrain_set_1/terrain_1/name = "Leaves"
 terrain_set_1/terrain_1/color = Color(0.0627451, 0.133333, 0.501961, 1)
 sources/2 = SubResource("TileSetAtlasSource_tnmd4")
 sources/3 = SubResource("TileSetAtlasSource_qppl5")
+sources/4 = SubResource("TileSetScenesCollectionSource_xixom")
+sources/1 = SubResource("TileSetAtlasSource_em7p3")

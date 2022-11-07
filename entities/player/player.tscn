@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c3813yy8mnue2"]
+[gd_scene load_steps=11 format=3 uid="uid://c3813yy8mnue2"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_y3cwq"]
 [ext_resource type="Texture2D" uid="uid://erpppy4e1jq5" path="res://assets/player.png" id="2_kq65h"]
@@ -40,6 +40,9 @@ animations = [{
 radius = 9.0
 height = 20.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wlf6a"]
+size = Vector2(10, 15)
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_y3cwq")
@@ -53,9 +56,6 @@ playing = true
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_1rysj")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
@@ -63,3 +63,13 @@ one_shot = true
 [node name="JumpBufferTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_wlf6a")
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

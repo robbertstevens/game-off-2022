@@ -2,6 +2,7 @@ extends AnimatedSprite2D
 
 var start := Vector2.ZERO
 var target := Vector2.ZERO
+
 @onready var timer := $Timer
 
 
@@ -10,7 +11,7 @@ func _ready() -> void:
     target = _target(start, 70)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
     var p0 = start
     var p1 = start + (target - start) / 2 + Vector2.UP * 80
     var p2 = target

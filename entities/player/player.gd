@@ -19,7 +19,8 @@ var last_frame_is_on_floor := false
 
 func _ready() -> void:
     state_manager = StateManager.new({
-        MOVE: Callable(self, "_move_state")
+        MOVE: Callable(self, "_move_state"),
+        HURT: Callable(self, "_hurt_state")
     }, MOVE)
 
 
@@ -59,11 +60,15 @@ func _move_state(delta: float) -> int:
 
     move_and_slide()
 
+
     return MOVE
 
 
 func _hurt_state(delta: float) -> int:
     emit_signal("player_hurt", global_position)
+
+    velocity.y = -300
+
     return state_manager.previous_state
 
 func _check_can_jump() -> bool:
@@ -84,4 +89,7 @@ func _check_can_jump() -> bool:
     return jump_key_is_pressed and is_on_floor()
 
 
+func _on_hit_box_body_entered(body: Node2D) -> void:
+    print(body.name)
 
+    state_manager.change_state(HURT)
