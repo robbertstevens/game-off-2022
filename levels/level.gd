@@ -24,6 +24,7 @@ func _physics_process(delta: float) -> void:
     $Camera2D.global_position = $Player.global_position #lerp($Camera2D.global_position, $Player.global_position, .6)
 
 func _on_Coin_coin_picked_up(total_coins: int):
+    # TODO: Make this better
     $UI/VBoxContainer/HBoxContainer/CoinCount/CoinAmount.text = str(total_coins)
 
 
