@@ -5,6 +5,7 @@ var hit_coin_scn := preload("res://entities/hit_coin/hit_coin.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     await get_tree().process_frame
+    await get_tree().process_frame
 
     for coin in get_tree().get_nodes_in_group("coins"):
         coin.connect("coin_picked_up", Callable($Player, "_on_Coin_coin_picked_up"))
