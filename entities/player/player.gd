@@ -5,12 +5,13 @@ signal coin_picked_up(total_coins: int)
 
 enum {MOVE, HURT, DEAD}
 
-const SPEED = 300.0
+const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
 const GRAVITY: int = 980
 
 @onready var coyote: Timer = $CoyoteTimer
 @onready var jump_buffer: Timer = $JumpBufferTimer
+@onready var invulnerability: Timer = $InvulnerabilityTimer
 
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -18,12 +19,21 @@ var state_manager: StateManager = null
 
 var last_frame_is_on_floor := false
 
+var can_be_hurt := true :
+    get: return can_be_hurt
+    set(value):
+        can_be_hurt = value
+        if not value:
+            invulnerability.start()
+
+
 var coins := 0 :
     get:
         return coins
     set(value):
         coins = value
         emit_signal("coin_picked_up", coins)
+
 
 func _ready() -> void:
     state_manager = StateManager.new({
@@ -55,8 +65,7 @@ func _move_state(delta: float) -> int:
     if x > 0: animation.flip_h = false
     if x < 0: animation.flip_h = true
 
-    # TODO: move_speed
-    velocity.x = x * 200
+    velocity.x = x * SPEED
 
     if is_on_floor() && velocity.x == 0:
         animation.play("idle")
@@ -67,8 +76,24 @@ func _move_state(delta: float) -> int:
 
     last_frame_is_on_floor = is_on_floor()
 
-    move_and_slide()
+    if can_be_hurt:
+        for i in get_slide_collision_count():
+            var col = get_slide_collision(i)
+            var collider = col.get_collider()
 
+            if collider and collider.is_in_group("monsters"):
+                if Vector2.UP.dot(col.get_normal()) > 0.1:
+                    velocity.y = JUMP_VELOCITY
+
+                    if collider.has_method("die"):
+                        collider.die()
+
+                else:
+                    can_be_hurt = false
+
+                    return HURT
+
+    move_and_slide()
 
     return MOVE
 
@@ -83,11 +108,14 @@ func _hurt_state(delta: float) -> int:
 
     velocity.y = -300
 
-    return state_manager.previous_state
+    return MOVE
 
 
 func _dead_state(delta: float) -> int:
+    velocity.y += GRAVITY * delta
+    move_and_slide()
     return DEAD
+
 
 func _check_can_jump() -> bool:
     var jump_key_is_pressed := Input.is_action_just_pressed("jump")
@@ -106,11 +134,14 @@ func _check_can_jump() -> bool:
 
     return jump_key_is_pressed and is_on_floor()
 
+
 func _on_Coin_coin_picked_up() -> void:
     coins += 1
 
 
+func _on_invulnerability_timer_timeout() -> void:
+    can_be_hurt = true
+
+
 func _on_hit_box_body_entered(body: Node2D) -> void:
     print(body.name)
-
-    state_manager.change_state(HURT)
