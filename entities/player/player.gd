@@ -81,17 +81,20 @@ func _move_state(delta: float) -> int:
             var col = get_slide_collision(i)
             var collider = col.get_collider()
 
-            if collider and collider.is_in_group("monsters"):
+            if not collider:
+                continue
+
+            if collider.is_in_group("monsters"):
                 if Vector2.UP.dot(col.get_normal()) > 0.1:
                     velocity.y = JUMP_VELOCITY
 
                     if collider.has_method("die"):
                         collider.die()
-
                 else:
-                    can_be_hurt = false
-
                     return HURT
+            if collider.is_in_group("spikes"):
+                velocity.y = JUMP_VELOCITY
+                return HURT
 
     move_and_slide()
 
@@ -99,6 +102,8 @@ func _move_state(delta: float) -> int:
 
 
 func _hurt_state(delta: float) -> int:
+    can_be_hurt = false
+
     if coins == 0:
         return state_manager.change_state(DEAD)
 
@@ -112,6 +117,7 @@ func _hurt_state(delta: float) -> int:
 
 
 func _dead_state(delta: float) -> int:
+    velocity = Vector2.ZERO
     velocity.y += GRAVITY * delta
     move_and_slide()
     return DEAD
@@ -141,7 +147,3 @@ func _on_Coin_coin_picked_up() -> void:
 
 func _on_invulnerability_timer_timeout() -> void:
     can_be_hurt = true
-
-
-func _on_hit_box_body_entered(body: Node2D) -> void:
-    print(body.name)
