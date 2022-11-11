@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://bb2y6ldepgfpc"]
+
+[ext_resource type="Script" path="res://entities/fly/fly.gd" id="1_026lb"]
+[ext_resource type="Script" path="res://entities/fly/fly_path.gd" id="1_p5upx"]
+[ext_resource type="Texture2D" uid="uid://d2b8wyk8bocnw" path="res://assets/characters_packed.png" id="1_s0xud"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mc6q"]
+atlas = ExtResource("1_s0xud")
+region = Rect2(144, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fynqv"]
+atlas = ExtResource("1_s0xud")
+region = Rect2(168, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gkog"]
+atlas = ExtResource("1_s0xud")
+region = Rect2(192, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jde0t"]
+animations = [{
+"frames": [SubResource("AtlasTexture_2mc6q"), SubResource("AtlasTexture_fynqv"), SubResource("AtlasTexture_6gkog")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tosyy"]
+size = Vector2(20, 10)
+
+[node name="FlyPath" type="Path2D"]
+script = ExtResource("1_p5upx")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotates = false
+loop = false
+
+[node name="Fly" type="AnimatableBody2D" parent="PathFollow2D" groups=["monsters"]]
+collision_layer = 32
+collision_mask = 2
+sync_to_physics = false
+script = ExtResource("1_026lb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PathFollow2D/Fly"]
+frames = SubResource("SpriteFrames_jde0t")
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Fly"]
+shape = SubResource("RectangleShape2D_tosyy")
+
+[connection signal="died" from="PathFollow2D/Fly" to="." method="_on_fly_died"]
