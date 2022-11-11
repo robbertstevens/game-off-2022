@@ -10,7 +10,9 @@
 texture = ExtResource("1_7x8as")
 texture_region_size = Vector2i(18, 18)
 0:1/next_alternative_id = 3
-0:1/animation_columns = 1
+0:1/animation_columns = 2
+0:1/animation_frame_0/duration = 0.3
+0:1/animation_frame_1/duration = 0.3
 0:1/0 = 0
 0:1/0/terrain_set = 2
 0:1/0/terrain = 0
