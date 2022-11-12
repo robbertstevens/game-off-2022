@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://be01ko0oaketq"]
+[gd_scene load_steps=7 format=3 uid="uid://be01ko0oaketq"]
 
 [ext_resource type="Theme" uid="uid://bnlkviyocrlsv" path="res://assets/gameoff_ui_theme.tres" id="1_enkwi"]
+[ext_resource type="Script" path="res://ui/ui.gd" id="1_igjcc"]
 [ext_resource type="Texture2D" uid="uid://dkn7y47g8p8yt" path="res://assets/heart_full.png" id="2_eekya"]
 [ext_resource type="Texture2D" uid="uid://uetq245fpbgg" path="res://assets/coin.png" id="3_b2fga"]
 [ext_resource type="Texture2D" uid="uid://q06oaklt7pru" path="res://assets/coin-side.png" id="4_5kw1m"]
@@ -13,6 +14,7 @@ frame_1/texture = ExtResource("4_5kw1m")
 frame_1/duration = 0.2
 
 [node name="UI" type="CanvasLayer"]
+script = ExtResource("1_igjcc")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 15
@@ -23,16 +25,19 @@ grow_vertical = 2
 theme = ExtResource("1_enkwi")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
 offset_right = 320.0
 offset_bottom = 23.0
 
 [node name="HeartContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
 visible = false
+layout_mode = 2
 offset_right = 62.0
 offset_bottom = 23.0
 size_flags_horizontal = 0
 
 [node name="Heart1" type="TextureRect" parent="VBoxContainer/HBoxContainer/HeartContainer"]
+layout_mode = 2
 offset_top = 2.0
 offset_right = 18.0
 offset_bottom = 20.0
@@ -41,6 +46,7 @@ texture = ExtResource("2_eekya")
 stretch_mode = 2
 
 [node name="Heart2" type="TextureRect" parent="VBoxContainer/HBoxContainer/HeartContainer"]
+layout_mode = 2
 offset_left = 22.0
 offset_top = 2.0
 offset_right = 40.0
@@ -50,6 +56,7 @@ texture = ExtResource("2_eekya")
 stretch_mode = 2
 
 [node name="Heart3" type="TextureRect" parent="VBoxContainer/HBoxContainer/HeartContainer"]
+layout_mode = 2
 offset_left = 44.0
 offset_top = 2.0
 offset_right = 62.0
@@ -59,6 +66,7 @@ texture = ExtResource("2_eekya")
 stretch_mode = 2
 
 [node name="CoinCount" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
 offset_right = 46.0
 offset_bottom = 23.0
 size_flags_horizontal = 8
@@ -66,6 +74,7 @@ size_flags_vertical = 4
 alignment = 2
 
 [node name="CoinTexture" type="TextureRect" parent="VBoxContainer/HBoxContainer/CoinCount"]
+layout_mode = 2
 offset_top = 2.0
 offset_right = 18.0
 offset_bottom = 20.0
@@ -75,6 +84,7 @@ texture = SubResource("AnimatedTexture_4j0j4")
 stretch_mode = 2
 
 [node name="X" type="Label" parent="VBoxContainer/HBoxContainer/CoinCount"]
+layout_mode = 2
 offset_left = 22.0
 offset_right = 32.0
 offset_bottom = 23.0
@@ -83,6 +93,7 @@ text = "x"
 
 [node name="CoinAmount" type="Label" parent="VBoxContainer/HBoxContainer/CoinCount"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 36.0
 offset_right = 46.0
 offset_bottom = 23.0
