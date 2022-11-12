@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjeau6ocyqsbr"]
+
+[ext_resource type="Texture2D" uid="uid://ndrpqu35jqxp" path="res://assets/tiles_packed.png" id="1_ciitq"]
+[ext_resource type="Script" path="res://entities/jump_pad/jump_pad.gd" id="1_lfvnp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cmxv"]
+atlas = ExtResource("1_ciitq")
+region = Rect2(126, 90, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7srp"]
+atlas = ExtResource("1_ciitq")
+region = Rect2(144, 90, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bv7mk"]
+animations = [{
+"frames": [SubResource("AtlasTexture_1cmxv"), SubResource("AtlasTexture_m7srp"), SubResource("AtlasTexture_1cmxv")],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0x8gl"]
+size = Vector2(20, 0)
+
+[node name="JumpPad" type="StaticBody2D" groups=["jump_pad"]]
+collision_mask = 2
+script = ExtResource("1_lfvnp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+frames = SubResource("SpriteFrames_bv7mk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0x8gl")
+one_way_collision = true

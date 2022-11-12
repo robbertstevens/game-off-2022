@@ -96,6 +96,12 @@ func _move_state(delta: float) -> int:
                 velocity.y = JUMP_VELOCITY
                 return HURT
 
+            if collider.is_in_group("jump_pad"):
+                if Vector2.UP.dot(col.get_normal()) > 0.1:
+                    collider.jump()
+                    velocity.y = JUMP_VELOCITY * 1.2
+
+
     move_and_slide()
 
     return MOVE
