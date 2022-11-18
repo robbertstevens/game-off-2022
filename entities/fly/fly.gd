@@ -2,5 +2,10 @@ extends AnimatableBody2D
 
 signal died
 
-func die() -> void:
-    emit_signal("died")
+var health = 1
+
+func hit() -> void:
+    health -= 1
+
+    if health <= 0:
+        emit_signal("died")

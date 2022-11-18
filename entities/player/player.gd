@@ -7,7 +7,7 @@ enum {MOVE, HURT, DEAD}
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
-const GRAVITY: int = 980
+var GRAVITY: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var coyote: Timer = $CoyoteTimer
 @onready var jump_buffer: Timer = $JumpBufferTimer
@@ -27,7 +27,7 @@ var can_be_hurt := true :
             invulnerability.start()
 
 
-var coins := 0 :
+var coins := 10 :
     get:
         return coins
     set(value):
@@ -40,7 +40,7 @@ func _ready() -> void:
         MOVE: Callable(self, "_move_state"),
         HURT: Callable(self, "_hurt_state"),
         DEAD: Callable(self, "_dead_state"),
-    }, MOVE)
+    }, MOVE, true)
 
 
 func _physics_process(delta: float) -> void:
@@ -88,19 +88,20 @@ func _move_state(delta: float) -> int:
                 if Vector2.UP.dot(col.get_normal()) > 0.1:
                     velocity.y = JUMP_VELOCITY
 
-                    if collider.has_method("die"):
-                        collider.die()
+                    if collider.has_method("hit"):
+                        collider.hit()
                 else:
                     return HURT
-            if collider.is_in_group("spikes"):
+            elif collider.is_in_group("spikes"):
                 velocity.y = JUMP_VELOCITY
                 return HURT
-
-            if collider.is_in_group("jump_pad"):
+            elif collider.is_in_group("jump_pad"):
                 if Vector2.UP.dot(col.get_normal()) > 0.1:
                     collider.jump()
                     velocity.y = JUMP_VELOCITY * 1.2
-
+            elif collider.is_in_group("boss"):
+                velocity.y = JUMP_VELOCITY
+                return HURT
 
     move_and_slide()
 
@@ -123,6 +124,8 @@ func _hurt_state(delta: float) -> int:
 
 
 func _dead_state(delta: float) -> int:
+    set_collision_layer_value(2, false)
+    set_collision_mask_value(6, false)
     velocity = Vector2.ZERO
     velocity.y += GRAVITY * delta
     move_and_slide()

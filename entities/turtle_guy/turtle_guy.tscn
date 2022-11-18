@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3 uid="uid://p4gojcmafx61"]
+
+[ext_resource type="Texture2D" uid="uid://d2b8wyk8bocnw" path="res://assets/characters_packed.png" id="1_13wei"]
+[ext_resource type="Script" path="res://entities/turtle_guy/turtle_guy.gd" id="1_ww2g2"]
+[ext_resource type="Texture2D" uid="uid://bll1xjfymsxx6" path="res://assets/pixel_style1.png" id="3_asv48"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_buh12"]
+atlas = ExtResource("1_13wei")
+region = Rect2(120, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnon6"]
+atlas = ExtResource("1_13wei")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jt06o"]
+atlas = ExtResource("1_13wei")
+region = Rect2(96, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fy3ug"]
+animations = [{
+"frames": [SubResource("AtlasTexture_buh12")],
+"loop": true,
+"name": &"block",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_qnon6"), SubResource("AtlasTexture_jt06o")],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ge7md"]
+size = Vector2(46, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hhp1"]
+atlas = ExtResource("3_asv48")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcff7"]
+atlas = ExtResource("3_asv48")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g42r1"]
+animations = [{
+"frames": [SubResource("AtlasTexture_8hhp1")],
+"loop": true,
+"name": &"alerted",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_rcff7")],
+"loop": true,
+"name": &"confused",
+"speed": 5.0
+}]
+
+[node name="TurtleGuy" type="CharacterBody2D" groups=["boss"]]
+collision_layer = 32
+collision_mask = 3
+script = ExtResource("1_ww2g2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+frames = SubResource("SpriteFrames_fy3ug")
+animation = &"walk"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_ge7md")
+
+[node name="PlayerDetectRayCast" type="RayCast2D" parent="."]
+position = Vector2(0, 10)
+target_position = Vector2(-100, 0)
+collision_mask = 2
+
+[node name="AlertedTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="ConfusedTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Emotes" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -29)
+frames = SubResource("SpriteFrames_g42r1")
+animation = &"alerted"
+
+[node name="WallDetectRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(-25, 0)
+hit_from_inside = true
+
+[node name="InvulnerabilityTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="ConfusedTimer" to="." method="_on_confused_timer_timeout"]

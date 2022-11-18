@@ -4,16 +4,19 @@ var _states: Dictionary = {}
 
 var current_state: int
 var previous_state: int
+var debug := false
 
-func _init(states: Dictionary, starting_state: int) -> void:
+func _init(states: Dictionary, starting_state: int, debug = false) -> void:
     _states = states
-
+    debug = debug
     change_state(starting_state)
 
 func change_state(new_state: int) -> int:
     if not current_state == new_state:
         previous_state = current_state
         current_state = new_state
+        if debug:
+            print("changed from " + str(previous_state) + " to " + str(current_state))
 
     return current_state
 
