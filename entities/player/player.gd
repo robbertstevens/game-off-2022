@@ -46,9 +46,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
     state_manager.physics_process(delta)
 
-    if Input.is_action_just_pressed("ui_accept"):
-        emit_signal("player_hurt", global_position)
-
 
 func _move_state(delta: float) -> int:
     if not is_on_floor() && last_frame_is_on_floor:
