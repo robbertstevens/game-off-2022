@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxdimgp0l7fgp"]
+
+[ext_resource type="Theme" uid="uid://bnlkviyocrlsv" path="res://assets/gameoff_ui_theme.tres" id="1_ynqwl"]
+[ext_resource type="Texture2D" uid="uid://uetq245fpbgg" path="res://assets/coin.png" id="2_dqi0y"]
+[ext_resource type="Texture2D" uid="uid://q06oaklt7pru" path="res://assets/coin-side.png" id="3_aa32h"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_4j0j4"]
+frames = 2
+frame_0/texture = ExtResource("2_dqi0y")
+frame_0/duration = 0.2
+frame_1/texture = ExtResource("3_aa32h")
+frame_1/duration = 0.2
+
+[node name="HBoxContainer" type="HBoxContainer"]
+offset_right = 320.0
+offset_bottom = 23.0
+size_flags_vertical = 0
+
+[node name="CoinCount" type="HBoxContainer" parent="."]
+offset_right = 46.0
+offset_bottom = 23.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+alignment = 2
+
+[node name="CoinTexture" type="TextureRect" parent="CoinCount"]
+offset_top = 2.0
+offset_right = 18.0
+offset_bottom = 20.0
+size_flags_vertical = 4
+theme = ExtResource("1_ynqwl")
+texture = SubResource("AnimatedTexture_4j0j4")
+stretch_mode = 2
+
+[node name="X" type="Label" parent="CoinCount"]
+offset_left = 22.0
+offset_right = 32.0
+offset_bottom = 23.0
+size_flags_horizontal = 0
+text = "x"
+
+[node name="CoinAmount" type="Label" parent="CoinCount"]
+unique_name_in_owner = true
+offset_left = 36.0
+offset_right = 46.0
+offset_bottom = 23.0
+text = "0"

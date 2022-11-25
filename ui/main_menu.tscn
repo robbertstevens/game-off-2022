@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://cptabehsno04u"]
+
+[ext_resource type="Theme" uid="uid://bnlkviyocrlsv" path="res://assets/gameoff_ui_theme.tres" id="1_sarf5"]
+
+[node name="MainMenu" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_sarf5")
+alignment = 1
+
+[node name="GameName" type="Label" parent="."]
+offset_top = 64.0
+offset_right = 320.0
+offset_bottom = 87.0
+text = "Game Off 2022"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 135.0
+offset_top = 91.0
+offset_right = 185.0
+offset_bottom = 115.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Start"

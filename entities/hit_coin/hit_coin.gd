@@ -12,16 +12,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-    var p0 = start
-    var p1 = start + (target - start) / 2 + Vector2.UP * 80
-    var p2 = target
-
-    var m1 = lerp(p0, p1, timer.wait_time - timer.time_left)
-    var m2 = lerp(p1, p2, timer.wait_time - timer.time_left)
-
-    var new_pos = lerp(m1, m2, timer.wait_time - timer.time_left)
-
-    global_position = new_pos
+    global_position = CurveMath.calc_curve(start, target, timer.wait_time - timer.time_left)
 
 
 func _target(pos, radius) -> Vector2:

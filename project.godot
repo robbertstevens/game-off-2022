@@ -25,6 +25,11 @@ run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+CurveMath="*res://utils/curve_math.gd"
+SceneTransition="*res://utils/scene_transition/scene_transition.tscn"
+
 [display]
 
 window/size/viewport_width=320
@@ -89,6 +94,7 @@ jump={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Pickups"
 2d_physics/layer_4="Obstacles"
+2d_physics/layer_5="PlayerHitBox"
 2d_physics/layer_6="Enemies"
 
 [rendering]

@@ -1,0 +1,97 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmkawt773gv4k"]
+
+[ext_resource type="Theme" uid="uid://bnlkviyocrlsv" path="res://assets/gameoff_ui_theme.tres" id="1_j5ldh"]
+
+[sub_resource type="Animation" id="Animation_2iift"]
+resource_name = "LEVEL_INTRO"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_tu4n8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qht0d"]
+_data = {
+"LEVEL_INTRO": SubResource("Animation_2iift"),
+"RESET": SubResource("Animation_tu4n8")
+}
+
+[node name="LevelStartedContainer" type="HBoxContainer"]
+offset_top = 27.0
+offset_right = 320.0
+offset_bottom = 180.0
+size_flags_vertical = 3
+theme = ExtResource("1_j5ldh")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_top = 53.0
+offset_right = 208.0
+offset_bottom = 99.0
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+offset_right = 208.0
+offset_bottom = 46.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="RichTextLabel" type="Label" parent="PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+offset_left = 20.0
+offset_right = 188.0
+offset_bottom = 46.0
+size_flags_vertical = 1
+text = "
+level: {level_name} "
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qht0d")
+}

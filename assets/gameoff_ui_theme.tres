@@ -1,6 +1,76 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bnlkviyocrlsv"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bnlkviyocrlsv"]
 
 [ext_resource type="FontFile" uid="uid://irqacw1a4a71" path="res://assets/Kenney Mini.ttf" id="1_1m6rg"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6lcef"]
+bg_color = Color(0.435294, 0.243137, 0.262745, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.796078, 0.505882, 0.368627, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 2
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2u3ri"]
+bg_color = Color(0.796078, 0.505882, 0.368627, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.435294, 0.243137, 0.262745, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 2
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50wnr"]
+bg_color = Color(0.435294, 0.243137, 0.262745, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.435294, 0.243137, 0.262745, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 2
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2n6ho"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_detail = 10
+shadow_color = Color(0, 0, 0, 1)
+anti_aliasing = false
+
 [resource]
 default_font = ExtResource("1_1m6rg")
+Button/styles/hover = SubResource("StyleBoxFlat_6lcef")
+Button/styles/normal = SubResource("StyleBoxFlat_2u3ri")
+Button/styles/pressed = SubResource("StyleBoxFlat_50wnr")
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/constants/shadow_offset_x = 0
+Label/constants/shadow_offset_y = 0
+Label/constants/shadow_outline_size = 4
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_2n6ho")

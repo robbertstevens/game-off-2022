@@ -1,9 +1,245 @@
-[gd_scene load_steps=3 format=3 uid="uid://d17kg1gux1tan"]
+[gd_scene load_steps=10 format=3 uid="uid://d17kg1gux1tan"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_dkk0x"]
-[ext_resource type="PackedScene" uid="uid://be01ko0oaketq" path="res://ui/ui.tscn" id="4_283nk"]
+[ext_resource type="Script" path="res://ui/ui.gd" id="2_e3mey"]
+[ext_resource type="Theme" uid="uid://bnlkviyocrlsv" path="res://assets/gameoff_ui_theme.tres" id="3_byakn"]
+[ext_resource type="Texture2D" uid="uid://uetq245fpbgg" path="res://assets/coin.png" id="4_ple1h"]
+[ext_resource type="Texture2D" uid="uid://q06oaklt7pru" path="res://assets/coin-side.png" id="5_hx6li"]
+
+[sub_resource type="Animation" id="Animation_2iift"]
+resource_name = "LEVEL_INTRO"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_tu4n8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qht0d"]
+_data = {
+"LEVEL_INTRO": SubResource("Animation_2iift"),
+"RESET": SubResource("Animation_tu4n8")
+}
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_4j0j4"]
+frames = 2
+frame_0/texture = ExtResource("4_ple1h")
+frame_0/duration = 0.2
+frame_1/texture = ExtResource("5_hx6li")
+frame_1/duration = 0.2
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_dkk0x")
 
-[node name="UI" parent="." instance=ExtResource("4_283nk")]
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("2_e3mey")
+
+[node name="LevelStartedContainer" type="HBoxContainer" parent="UI"]
+offset_top = 27.0
+offset_right = 320.0
+offset_bottom = 180.0
+size_flags_vertical = 3
+theme = ExtResource("3_byakn")
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/LevelStartedContainer"]
+layout_mode = 2
+offset_top = 53.0
+offset_right = 208.0
+offset_bottom = 99.0
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/LevelStartedContainer/PanelContainer"]
+layout_mode = 2
+offset_right = 208.0
+offset_bottom = 46.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="RichTextLabel" type="Label" parent="UI/LevelStartedContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 20.0
+offset_right = 188.0
+offset_bottom = 46.0
+size_flags_vertical = 1
+text = "
+level: {level_name} "
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/LevelStartedContainer"]
+libraries = {
+"": SubResource("AnimationLibrary_qht0d")
+}
+
+[node name="CoinCounterContainer" type="HBoxContainer" parent="UI"]
+visible = false
+offset_right = 320.0
+offset_bottom = 23.0
+size_flags_vertical = 0
+theme = ExtResource("3_byakn")
+
+[node name="CoinCount" type="HBoxContainer" parent="UI/CoinCounterContainer"]
+layout_mode = 2
+offset_right = 45.0
+offset_bottom = 26.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+alignment = 2
+
+[node name="CoinTexture" type="TextureRect" parent="UI/CoinCounterContainer/CoinCount"]
+layout_mode = 2
+offset_top = 4.0
+offset_right = 18.0
+offset_bottom = 22.0
+size_flags_vertical = 4
+theme = ExtResource("3_byakn")
+texture = SubResource("AnimatedTexture_4j0j4")
+stretch_mode = 2
+
+[node name="X" type="Label" parent="UI/CoinCounterContainer/CoinCount"]
+layout_mode = 2
+offset_left = 22.0
+offset_right = 31.0
+offset_bottom = 26.0
+size_flags_horizontal = 0
+text = "x"
+
+[node name="CoinAmount" type="Label" parent="UI/CoinCounterContainer/CoinCount"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 35.0
+offset_right = 45.0
+offset_bottom = 26.0
+text = "0"
+
+[node name="MainMenu" type="VBoxContainer" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_byakn")
+alignment = 1
+
+[node name="GameName" type="Label" parent="UI/MainMenu"]
+layout_mode = 2
+offset_top = 64.0
+offset_right = 320.0
+offset_bottom = 87.0
+text = "Game Off 2022"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="UI/MainMenu"]
+layout_mode = 2
+offset_left = 135.0
+offset_top = 91.0
+offset_right = 185.0
+offset_bottom = 115.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Start"
+
+[node name="CreditsMenu" type="VBoxContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_byakn")
+alignment = 1
+
+[node name="ThankYou" type="Label" parent="UI/CreditsMenu"]
+layout_mode = 2
+offset_top = 53.0
+offset_right = 320.0
+offset_bottom = 99.0
+text = "Thank You For Playing My Submission
+To GameOff 2022"
+horizontal_alignment = 1
+
+[node name="ReStartButton" type="Button" parent="UI/CreditsMenu"]
+layout_mode = 2
+offset_left = 125.0
+offset_top = 103.0
+offset_right = 195.0
+offset_bottom = 127.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Restart"
+
+[node name="GameOver" type="VBoxContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_byakn")
+alignment = 1
+
+[node name="ThankYou" type="Label" parent="UI/GameOver"]
+layout_mode = 2
+offset_top = 64.0
+offset_right = 320.0
+offset_bottom = 87.0
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="ReStartButton" type="Button" parent="UI/GameOver"]
+layout_mode = 2
+offset_left = 125.0
+offset_top = 91.0
+offset_right = 195.0
+offset_bottom = 115.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Restart"
+
+[connection signal="pressed" from="UI/MainMenu/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="UI/CreditsMenu/ReStartButton" to="." method="_on_re_start_button_pressed"]
+[connection signal="pressed" from="UI/GameOver/ReStartButton" to="." method="_on_re_start_button_pressed"]

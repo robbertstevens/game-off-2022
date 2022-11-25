@@ -1,32 +1,62 @@
 extends Node2D
 
 @onready var ui: CanvasLayer = $UI
-@onready var ui_animation_player: AnimationPlayer = ui.get_animation_player()
 
-var levels: Array = [
-    preload("res://levels/dev_level.tscn")
+var levels: Array[PackedScene] = [
+#    preload("res://levels/dev_level.tscn")
+    preload("res://levels/level_one.tscn")
 ]
 
+var show_main_menu := true
 var current_level_idx := 0
 var current_level_node = null
+var state_manager : StateManager = null
 
 func _ready() -> void:
-    load_level(levels[current_level_idx])
+    RenderingServer.set_default_clear_color(Color("dff6f5"))
+
+    ui.change_ui("main_menu_ui")
 
 
-func _process(delta: float) -> void:
-    if Input.is_action_just_pressed("ui_accept"):
-        load_level(levels[current_level_idx])
+func reset() -> void:
+    current_level_idx = 0
 
 
-func load_level(level: Resource) -> void:
-    var instance = level.instantiate()
-    ui_animation_player.play("Resolve")
-    await ui_animation_player.animation_finished
-
+func load_level(level: PackedScene) -> void:
     if current_level_node:
         remove_child(current_level_node)
 
-    add_child(instance)
+    var instance = level.instantiate()
+    instance.connect("coins_amount_updated", Callable(ui, "_on_Coin_coin_picked_up"))
+    instance.connect("level_started", Callable(ui, "_on_level_started"))
+    instance.connect("level_finished", Callable(self, "_on_level_finished"))
+    instance.connect("game_over", Callable(self, "_on_game_over"))
     current_level_node = instance
-    ui_animation_player.play_backwards("Resolve")
+
+    SceneTransition.change_scene(instance, self)
+
+    ui.change_ui("game_ui")
+
+
+func _on_game_over() -> void:
+    remove_child(current_level_node)
+    ui.change_ui("game_over_ui")
+
+func _on_level_finished() -> void:
+    current_level_idx += 1
+
+    if current_level_idx > len(levels) - 1:
+        remove_child(current_level_node)
+        ui.change_ui("credits_menu_ui")
+        return
+
+    load_level(levels[current_level_idx])
+
+
+func _on_start_button_pressed() -> void:
+    load_level(levels[current_level_idx])
+
+
+func _on_re_start_button_pressed() -> void:
+    reset()
+    ui.change_ui("main_menu_ui")

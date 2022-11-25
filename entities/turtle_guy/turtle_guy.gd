@@ -46,10 +46,7 @@ func _walk_state(delta: float) -> int:
         velocity.y += gravity * delta
 
     if wall_detect_ray_cast.is_colliding():
-        print("hello")
         _flip()
-
-
 
     if player_detect_ray_cast.is_colliding():
         return ALERTED
