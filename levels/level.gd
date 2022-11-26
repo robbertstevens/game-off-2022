@@ -1,6 +1,7 @@
 extends Node2D
 
 signal coins_amount_updated(amount: int)
+signal keys_amount_updated(amount: int)
 signal level_started(name: String)
 signal level_finished
 signal game_over
@@ -19,6 +20,9 @@ func _ready() -> void:
     for coin in get_tree().get_nodes_in_group("coins"):
         coin.connect("coin_picked_up", Callable($Player, "_on_Coin_coin_picked_up"))
 
+    for key in get_tree().get_nodes_in_group("keys"):
+        key.connect("key_picked_up", Callable($Player, "_on_Key_key_picked_up"))
+
     var exit = get_tree().get_first_node_in_group("exit")
 
     if exit:
@@ -26,6 +30,7 @@ func _ready() -> void:
 
     player.connect("player_hurt", Callable(self, "_on_Player_player_hurt"))
     player.connect("coin_picked_up", Callable(self, "_on_coin_picked_up"))
+    player.connect("key_picked_up", Callable(self, "_on_key_picked_up"))
 
     player.connect("player_died", Callable(self, "_on_player_died"))
 
@@ -63,6 +68,10 @@ func _respawn_player() -> void:
 
 func _on_coin_picked_up(coins: int) -> void:
     emit_signal("coins_amount_updated", coins)
+
+
+func _on_key_picked_up(keys: int) -> void:
+    emit_signal("keys_amount_updated", keys)
 
 
 func _on_Player_player_hurt(pos: Vector2, coins: int):

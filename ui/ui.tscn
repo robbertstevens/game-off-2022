@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://be01ko0oaketq"]
+[gd_scene load_steps=3 format=3 uid="uid://cjm3hdy5jf2g4"]
 
 [ext_resource type="Theme" uid="uid://bnlkviyocrlsv" path="res://assets/gameoff_ui_theme.tres" id="1_enkwi"]
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_igjcc"]

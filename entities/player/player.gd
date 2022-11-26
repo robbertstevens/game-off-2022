@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal player_hurt(pos: Vector2)
 signal player_died()
 signal coin_picked_up(total_coins: int)
+signal key_picked_up(total_keys: int)
 
 enum {MOVE, HURT, DEAD}
 
@@ -35,6 +36,13 @@ var coins := 0 :
     set(value):
         coins = value
         emit_signal("coin_picked_up", coins)
+
+var keys := 0 :
+    get:
+        return keys
+    set(value):
+        keys = value
+        emit_signal("key_picked_up", keys)
 
 
 func _ready() -> void:
@@ -87,6 +95,11 @@ func _move_state(delta: float) -> int:
                 if Vector2.UP.dot(col.get_normal()) > 0.1:
                     collider.jump()
                     velocity.y = JUMP_VELOCITY * 1.2
+
+            if collider.is_in_group("locked_doors"):
+                if keys > 0 and collider.has_method("unlock"):
+                    keys -= 1
+                    collider.unlock()
 
     move_and_slide()
 
@@ -142,6 +155,10 @@ func _check_can_jump() -> bool:
 
 func _on_Coin_coin_picked_up() -> void:
     coins += 1
+
+
+func _on_Key_key_picked_up() -> void:
+    keys += 1
 
 
 func _on_hit_box_body_entered(body: Node2D) -> void:

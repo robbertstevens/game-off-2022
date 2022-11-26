@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://cmjkjpjx5ya5g"]
+[gd_resource type="TileSet" load_steps=14 format=3 uid="uid://cmjkjpjx5ya5g"]
 
 [ext_resource type="Texture2D" uid="uid://bbduw3usoraq2" path="res://assets/water_autotile.png" id="1_7x8as"]
 [ext_resource type="Texture2D" uid="uid://15a62xbknaw2" path="res://assets/grass_autotile.png" id="2_4qso5"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://og0shb32vb76" path="res://entities/exit_door/exit_door.tscn" id="6_eix70"]
 [ext_resource type="PackedScene" uid="uid://cjeau6ocyqsbr" path="res://entities/jump_pad/jump_pad.tscn" id="6_gxstj"]
 [ext_resource type="PackedScene" uid="uid://burrnvk6dkmit" path="res://entities/coin/coin.tscn" id="6_yjkle"]
+[ext_resource type="PackedScene" uid="uid://djwvjn6bq4e7l" path="res://entities/key/key.tscn" id="8_fmiir"]
+[ext_resource type="PackedScene" uid="uid://gttc6fapmkb3" path="res://entities/locked_door/locked_door.tscn" id="9_roj2r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_em7p3"]
 texture = ExtResource("1_7x8as")
@@ -472,6 +474,8 @@ scenes/1/scene = ExtResource("3_7jy3v")
 scenes/3/scene = ExtResource("6_yjkle")
 scenes/4/scene = ExtResource("6_eix70")
 scenes/5/scene = ExtResource("6_gxstj")
+scenes/6/scene = ExtResource("8_fmiir")
+scenes/7/scene = ExtResource("9_roj2r")
 
 [resource]
 tile_size = Vector2i(18, 18)

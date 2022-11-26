@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://djwvjn6bq4e7l"]
+
+[ext_resource type="Script" path="res://entities/key/key.gd" id="1_6akgk"]
+[ext_resource type="Texture2D" uid="uid://ndrpqu35jqxp" path="res://assets/tiles_packed.png" id="1_gqyoq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6iyrs"]
+atlas = ExtResource("1_gqyoq")
+region = Rect2(126, 18, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_41wjk"]
+animations = [{
+"frames": [SubResource("AtlasTexture_6iyrs")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26ep0"]
+size = Vector2(18, 15)
+
+[node name="Key" type="Area2D" groups=["keys"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_6akgk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+frames = SubResource("SpriteFrames_41wjk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_26ep0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -3,8 +3,8 @@ extends Node2D
 @onready var ui: CanvasLayer = $UI
 
 var levels: Array[PackedScene] = [
-#    preload("res://levels/dev_level.tscn")
-    preload("res://levels/level_one.tscn")
+    preload("res://levels/dev_level.tscn")
+#    preload("res://levels/level_one.tscn")
 ]
 
 var show_main_menu := true
@@ -27,7 +27,8 @@ func load_level(level: PackedScene) -> void:
         remove_child(current_level_node)
 
     var instance = level.instantiate()
-    instance.connect("coins_amount_updated", Callable(ui, "_on_Coin_coin_picked_up"))
+    instance.connect("coins_amount_updated", Callable(ui, "_on_coins_amount_updated"))
+    instance.connect("keys_amount_updated", Callable(ui, "_on_keys_amount_updated"))
     instance.connect("level_started", Callable(ui, "_on_level_started"))
     instance.connect("level_finished", Callable(self, "_on_level_finished"))
     instance.connect("game_over", Callable(self, "_on_game_over"))
