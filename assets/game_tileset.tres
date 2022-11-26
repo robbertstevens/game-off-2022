@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=14 format=3 uid="uid://cmjkjpjx5ya5g"]
+[gd_resource type="TileSet" load_steps=16 format=3 uid="uid://cmjkjpjx5ya5g"]
 
 [ext_resource type="Texture2D" uid="uid://bbduw3usoraq2" path="res://assets/water_autotile.png" id="1_7x8as"]
 [ext_resource type="Texture2D" uid="uid://15a62xbknaw2" path="res://assets/grass_autotile.png" id="2_4qso5"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://burrnvk6dkmit" path="res://entities/coin/coin.tscn" id="6_yjkle"]
 [ext_resource type="PackedScene" uid="uid://djwvjn6bq4e7l" path="res://entities/key/key.tscn" id="8_fmiir"]
 [ext_resource type="PackedScene" uid="uid://gttc6fapmkb3" path="res://entities/locked_door/locked_door.tscn" id="9_roj2r"]
+[ext_resource type="Texture2D" uid="uid://cc5leqdmuq6c0" path="res://assets/decoration_autotile.png" id="10_0oqkw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_em7p3"]
 texture = ExtResource("1_7x8as")
@@ -477,6 +478,39 @@ scenes/5/scene = ExtResource("6_gxstj")
 scenes/6/scene = ExtResource("8_fmiir")
 scenes/7/scene = ExtResource("9_roj2r")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qacow"]
+texture = ExtResource("10_0oqkw")
+texture_region_size = Vector2i(18, 18)
+0:0/0 = 0
+0:0/0/probability = 0.2
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/next_alternative_id = 3
+1:0/0 = 0
+1:0/0/probability = 0.2
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/next_alternative_id = 2
+2:0/0 = 0
+2:0/0/probability = 0.2
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/next_alternative_id = 2
+3:0/0 = 0
+3:0/0/probability = 0.2
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/next_alternative_id = 2
+4:0/0 = 0
+4:0/0/probability = 0.2
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/next_alternative_id = 2
+5:0/0 = 0
+5:0/0/probability = 0.2
+5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_0/angular_velocity = 0.0
+
 [resource]
 tile_size = Vector2i(18, 18)
 physics_layer_0/collision_layer = 1
@@ -496,3 +530,4 @@ sources/2 = SubResource("TileSetAtlasSource_tnmd4")
 sources/3 = SubResource("TileSetAtlasSource_qppl5")
 sources/4 = SubResource("TileSetScenesCollectionSource_xixom")
 sources/1 = SubResource("TileSetAtlasSource_em7p3")
+sources/5 = SubResource("TileSetAtlasSource_qacow")

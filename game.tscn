@@ -93,12 +93,14 @@ size_flags_vertical = 3
 theme = ExtResource("3_byakn")
 
 [node name="PanelContainer" type="PanelContainer" parent="UI/LevelStartedContainer"]
+layout_mode = 2
 offset_top = 53.0
 offset_right = 208.0
 offset_bottom = 99.0
 size_flags_vertical = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/LevelStartedContainer/PanelContainer"]
+layout_mode = 2
 offset_right = 208.0
 offset_bottom = 46.0
 theme_override_constants/margin_left = 20
@@ -106,6 +108,7 @@ theme_override_constants/margin_right = 20
 
 [node name="RichTextLabel" type="Label" parent="UI/LevelStartedContainer/PanelContainer/MarginContainer"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 20.0
 offset_right = 188.0
 offset_bottom = 46.0
@@ -125,6 +128,7 @@ size_flags_vertical = 0
 theme = ExtResource("3_byakn")
 
 [node name="CoinsCount" type="HBoxContainer" parent="UI/CoinCounterContainer"]
+layout_mode = 2
 offset_right = 46.0
 offset_bottom = 23.0
 size_flags_horizontal = 8
@@ -132,6 +136,7 @@ size_flags_vertical = 4
 alignment = 2
 
 [node name="CoinTexture" type="TextureRect" parent="UI/CoinCounterContainer/CoinsCount"]
+layout_mode = 2
 offset_top = 2.0
 offset_right = 18.0
 offset_bottom = 20.0
@@ -141,6 +146,7 @@ texture = SubResource("AnimatedTexture_4j0j4")
 stretch_mode = 2
 
 [node name="X" type="Label" parent="UI/CoinCounterContainer/CoinsCount"]
+layout_mode = 2
 offset_left = 22.0
 offset_right = 32.0
 offset_bottom = 23.0
@@ -149,12 +155,14 @@ text = "x"
 
 [node name="CoinAmount" type="Label" parent="UI/CoinCounterContainer/CoinsCount"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 36.0
 offset_right = 46.0
 offset_bottom = 23.0
 text = "0"
 
 [node name="KeysCount" type="HBoxContainer" parent="UI/CoinCounterContainer"]
+layout_mode = 2
 offset_left = 50.0
 offset_right = 96.0
 offset_bottom = 23.0
@@ -163,6 +171,7 @@ size_flags_vertical = 4
 alignment = 2
 
 [node name="KeyTexture" type="TextureRect" parent="UI/CoinCounterContainer/KeysCount"]
+layout_mode = 2
 offset_top = 2.0
 offset_right = 18.0
 offset_bottom = 20.0
@@ -172,6 +181,7 @@ texture = SubResource("AtlasTexture_pwtdc")
 stretch_mode = 2
 
 [node name="X" type="Label" parent="UI/CoinCounterContainer/KeysCount"]
+layout_mode = 2
 offset_left = 22.0
 offset_right = 32.0
 offset_bottom = 23.0
@@ -180,6 +190,7 @@ text = "x"
 
 [node name="KeyAmount" type="Label" parent="UI/CoinCounterContainer/KeysCount"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 36.0
 offset_right = 46.0
 offset_bottom = 23.0
@@ -196,6 +207,7 @@ theme = ExtResource("3_byakn")
 alignment = 1
 
 [node name="GameName" type="Label" parent="UI/MainMenu"]
+layout_mode = 2
 offset_top = 64.0
 offset_right = 320.0
 offset_bottom = 87.0
@@ -203,6 +215,7 @@ text = "Game Off 2022"
 horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="UI/MainMenu"]
+layout_mode = 2
 offset_left = 135.0
 offset_top = 91.0
 offset_right = 185.0
@@ -222,6 +235,7 @@ theme = ExtResource("3_byakn")
 alignment = 1
 
 [node name="ThankYou" type="Label" parent="UI/CreditsMenu"]
+layout_mode = 2
 offset_top = 53.0
 offset_right = 320.0
 offset_bottom = 99.0
@@ -230,6 +244,7 @@ To GameOff 2022"
 horizontal_alignment = 1
 
 [node name="ReStartButton" type="Button" parent="UI/CreditsMenu"]
+layout_mode = 2
 offset_left = 125.0
 offset_top = 103.0
 offset_right = 195.0
@@ -249,6 +264,7 @@ theme = ExtResource("3_byakn")
 alignment = 1
 
 [node name="ThankYou" type="Label" parent="UI/GameOver"]
+layout_mode = 2
 offset_top = 64.0
 offset_right = 320.0
 offset_bottom = 87.0
@@ -256,6 +272,7 @@ text = "Game Over"
 horizontal_alignment = 1
 
 [node name="ReStartButton" type="Button" parent="UI/GameOver"]
+layout_mode = 2
 offset_left = 125.0
 offset_top = 91.0
 offset_right = 195.0
