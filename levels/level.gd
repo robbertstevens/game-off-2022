@@ -7,6 +7,8 @@ signal level_finished
 signal game_over
 
 var hit_coin_scn := preload("res://entities/hit_coin/hit_coin.tscn")
+var smoke_scn := preload("res://entities/smoke/smoke.tscn")
+var key_scn := preload("res://entities/key/key.tscn")
 
 @onready var player = $Player
 @onready var camera = $Camera2D
@@ -22,6 +24,13 @@ func _ready() -> void:
 
     for key in get_tree().get_nodes_in_group("keys"):
         key.connect("key_picked_up", Callable($Player, "_on_Key_key_picked_up"))
+
+    for boss in get_tree().get_nodes_in_group("bosses"):
+        boss.connect("boss_died", Callable(self, "spawn_smoke"))
+        boss.connect("boss_died", Callable(self, "spawn_key"))
+
+    for monster in get_tree().get_nodes_in_group("monsters"):
+        monster.connect("monster_died", Callable(self, "spawn_smoke"))
 
     var exit = get_tree().get_first_node_in_group("exit")
 
@@ -73,6 +82,19 @@ func _on_coin_picked_up(coins: int) -> void:
 func _on_key_picked_up(keys: int) -> void:
     emit_signal("keys_amount_updated", keys)
 
+
+func spawn_smoke(pos: Vector2, scale = Vector2(1, 1)) -> void:
+    var smoke = smoke_scn.instantiate()
+    smoke.global_position = pos
+    smoke.scale = scale
+    add_child(smoke)
+
+
+func spawn_key(pos: Vector2, _scale) -> void:
+    var key = key_scn.instantiate()
+    key.global_position = pos
+    key.connect("key_picked_up", Callable($Player, "_on_Key_key_picked_up"))
+    add_child(key)
 
 func _on_Player_player_hurt(pos: Vector2, coins: int):
     for coin in range(0, coins):

@@ -18,6 +18,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
     state_manager.physics_process(delta)
 
+
 func _move_left_state(delta: float) -> int:
     follow.progress += move_speed * delta
     $PathFollow2D/Fly/AnimatedSprite2D.flip_h = true
@@ -25,6 +26,7 @@ func _move_left_state(delta: float) -> int:
         return RIGHT
 
     return LEFT
+
 
 func _move_right_state(delta: float) -> int:
     follow.progress -= move_speed * delta
@@ -34,5 +36,5 @@ func _move_right_state(delta: float) -> int:
     return RIGHT
 
 
-func _on_fly_died() -> void:
-    queue_free() # Replace with function body.
+func _on_fly_monster_died(pos) -> void:
+    queue_free()

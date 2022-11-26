@@ -47,4 +47,4 @@ playing = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Fly"]
 shape = SubResource("RectangleShape2D_tosyy")
 
-[connection signal="died" from="PathFollow2D/Fly" to="." method="_on_fly_died"]
+[connection signal="monster_died" from="PathFollow2D/Fly" to="." method="_on_fly_monster_died"]

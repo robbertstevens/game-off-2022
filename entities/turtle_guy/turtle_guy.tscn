@@ -53,7 +53,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="TurtleGuy" type="CharacterBody2D" groups=["boss"]]
+[node name="TurtleGuy" type="CharacterBody2D" groups=["bosses"]]
 collision_layer = 32
 collision_mask = 17
 script = ExtResource("1_ww2g2")

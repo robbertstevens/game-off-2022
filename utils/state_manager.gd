@@ -23,7 +23,7 @@ func change_state(new_state: int) -> int:
 func physics_process(delta: float) -> void:
     var process_func = _get_state_fn(current_state)
 
-    var new_state = process_func.callv([delta])
+    var new_state = await process_func.callv([delta])
 
     if not new_state == current_state:
         change_state(new_state)

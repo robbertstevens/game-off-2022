@@ -2,7 +2,11 @@ extends StaticBody2D
 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 
+var locked = true
+
 func unlock() -> void:
-    animation_player.play("unlock")
-    await animation_player.animation_finished
-    queue_free()
+    if locked:
+        locked = false
+        animation_player.play("unlock")
+        await animation_player.animation_finished
+        queue_free()

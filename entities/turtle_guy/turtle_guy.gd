@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
-enum {WALK, ALERTED, CHARGE, CONFUSED, DEAD}
+signal boss_died(pos: Vector2, scale: Vector2)
+
+enum {WALK, ALERTED, CHARGE, CONFUSED}
 
 const MOVE_SPEED = 100.0
 const JUMP_VELOCITY = -400.0
@@ -19,7 +21,7 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var state_manager: StateManager = null
 
-var health := 4
+var health := 1
 
 func _ready() -> void:
     state_manager = StateManager.new({
@@ -27,7 +29,6 @@ func _ready() -> void:
         ALERTED: Callable(self, "_alerted_state"),
         CHARGE: Callable(self, "_charge_state"),
         CONFUSED: Callable(self, "_confused_state"),
-        DEAD: Callable(self, "_dead_state"),
     }, WALK, true)
 
 
@@ -103,17 +104,6 @@ func _confused_state(delta: float) -> int:
     return CONFUSED
 
 
-func _dead_state(delta: float) -> int:
-    if not is_on_floor():
-        velocity.y += gravity * delta
-
-    emotes.hide()
-    rotation = deg_to_rad(180)
-
-    move_and_slide()
-    return DEAD
-
-
 func _flip() -> void:
     animation.flip_h = !animation.flip_h
     if animation.flip_h:
@@ -138,6 +128,5 @@ func hit() -> void:
 
 
 func die() -> void:
-    state_manager.change_state(DEAD)
-    set_collision_mask_value(2, false)
-    set_collision_layer_value(6, false)
+    emit_signal("boss_died", global_position, animation.scale)
+    queue_free()

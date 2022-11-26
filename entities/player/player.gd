@@ -97,9 +97,10 @@ func _move_state(delta: float) -> int:
                     velocity.y = JUMP_VELOCITY * 1.2
 
             if collider.is_in_group("locked_doors"):
-                if keys > 0 and collider.has_method("unlock"):
-                    keys -= 1
-                    collider.unlock()
+                if collider.locked:
+                    if keys > 0 and collider.has_method("unlock"):
+                        keys -= 1
+                        collider.unlock()
 
     move_and_slide()
 
@@ -166,7 +167,7 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 
     # If we hit a monster from above we want to hurt it, otherwise we
     # the player is hurt
-    if ['monsters'].any(func(g) : return body.is_in_group(g)) and is_above:
+    if ['monsters'].all(func(g) : return body.is_in_group(g)) and is_above:
         velocity.y = JUMP_VELOCITY
 
         if body.has_method("hit"):
