@@ -6,11 +6,13 @@
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_rayij")
+level_name = "Level 1"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
 [node name="TileMap" type="TileMap" parent="."]
+position = Vector2(1, 1)
 tile_set = ExtResource("3_qgrx7")
 format = 2
 layer_0/name = "Air"
@@ -27,7 +29,7 @@ layer_2/modulate = Color(1, 1, 1, 1)
 layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
-layer_2/tile_data = PackedInt32Array(458751, 65538, 0, 524287, 65538, 1, 589823, 65538, 1, 393216, 131074, 0, 458752, 131074, 1, 524288, 131074, 1, 524289, 262146, 1, 458753, 196610, 1, 393217, 196610, 0, 655359, 65538, 2, 589824, 131074, 2, 589825, 131074, 2, 524290, 131074, 0, 524291, 196610, 0, 589827, 196610, 2, 589826, 131074, 2, 393226, 65538, 0, 458762, 65538, 1, 524298, 65538, 1, 589834, 65538, 2, 524299, 196610, 1, 458763, 196610, 1, 393227, 196610, 0, 589835, 196610, 2, 327680, 131077, 0, 327681, 262149, 0, 327690, 65541, 0, 11, 327685, 0, -262142, 65541, 0, 65555, 196613, 0, 131068, 5, 0, 131069, 5, 0, 458754, 262149, 0)
+layer_2/tile_data = PackedInt32Array(458751, 65538, 0, 524287, 65538, 1, 589823, 65538, 1, 393216, 131074, 0, 458752, 131074, 1, 524288, 131074, 1, 524289, 262146, 1, 458753, 196610, 1, 393217, 196610, 0, 655359, 65538, 2, 589824, 131074, 2, 589825, 131074, 2, 524290, 131074, 0, 524291, 196610, 0, 589827, 196610, 2, 589826, 131074, 2, 393226, 65538, 0, 458762, 65538, 1, 524298, 65538, 1, 589834, 65538, 2, 524299, 196610, 1, 458763, 196610, 1, 393227, 196610, 0, 589835, 196610, 2, 327680, 131077, 0, 327681, 262149, 0, 327690, 65541, 0, 11, 327685, 0, -262142, 65541, 0, 65555, 196613, 0, 131068, 5, 0, 131069, 5, 0, 458754, 262149, 0, 196610, 262150, 0, 393244, 196614, 0, 393242, 262150, 0, 327691, 262150, 0)
 layer_3/name = "Trees"
 layer_3/enabled = true
 layer_3/modulate = Color(1, 1, 1, 1)
@@ -59,3 +61,23 @@ layer_6/tile_data = PackedInt32Array()
 
 [node name="Player" parent="." instance=ExtResource("7_5fa5m")]
 position = Vector2(36, 45)
+
+[connection signal="body_entered" from="TileMap/Coin" to="TileMap/Coin" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@205725" to="TileMap/@Coin@205725" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@205726" to="TileMap/@Coin@205726" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@205727" to="TileMap/@Coin@205727" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@205728" to="TileMap/@Coin@205728" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@205729" to="TileMap/@Coin@205729" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@205730" to="TileMap/@Coin@205730" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@205731" to="TileMap/@Coin@205731" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@205732" to="TileMap/@Coin@205732" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@205733" to="TileMap/@Coin@205733" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@205734" to="TileMap/@Coin@205734" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@205735" to="TileMap/@Coin@205735" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@205736" to="TileMap/@Coin@205736" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@205737" to="TileMap/@Coin@205737" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@205738" to="TileMap/@Coin@205738" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@205739" to="TileMap/@Coin@205739" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@205740" to="TileMap/@Coin@205740" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@205741" to="TileMap/@Coin@205741" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@205742" to="TileMap/@Coin@205742" method="_on_body_entered"]

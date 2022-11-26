@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=16 format=3 uid="uid://cmjkjpjx5ya5g"]
+[gd_resource type="TileSet" load_steps=18 format=3 uid="uid://cmjkjpjx5ya5g"]
 
 [ext_resource type="Texture2D" uid="uid://bbduw3usoraq2" path="res://assets/water_autotile.png" id="1_7x8as"]
 [ext_resource type="Texture2D" uid="uid://15a62xbknaw2" path="res://assets/grass_autotile.png" id="2_4qso5"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://djwvjn6bq4e7l" path="res://entities/key/key.tscn" id="8_fmiir"]
 [ext_resource type="PackedScene" uid="uid://gttc6fapmkb3" path="res://entities/locked_door/locked_door.tscn" id="9_roj2r"]
 [ext_resource type="Texture2D" uid="uid://cc5leqdmuq6c0" path="res://assets/decoration_autotile.png" id="10_0oqkw"]
+[ext_resource type="Texture2D" uid="uid://belcryvdf3tls" path="res://assets/signs.png" id="11_tms2s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_em7p3"]
 texture = ExtResource("1_7x8as")
@@ -511,6 +512,25 @@ texture_region_size = Vector2i(18, 18)
 5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:0/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x2cdm"]
+texture = ExtResource("11_tms2s")
+texture_region_size = Vector2i(18, 18)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+
 [resource]
 tile_size = Vector2i(18, 18)
 physics_layer_0/collision_layer = 1
@@ -531,3 +551,4 @@ sources/3 = SubResource("TileSetAtlasSource_qppl5")
 sources/4 = SubResource("TileSetScenesCollectionSource_xixom")
 sources/1 = SubResource("TileSetAtlasSource_em7p3")
 sources/5 = SubResource("TileSetAtlasSource_qacow")
+sources/6 = SubResource("TileSetAtlasSource_x2cdm")

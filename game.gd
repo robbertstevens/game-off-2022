@@ -5,9 +5,10 @@ extends Node2D
 var levels: Array[PackedScene] = [
 #    preload("res://levels/dev_level.tscn"),
     preload("res://levels/level_one.tscn"),
+    preload("res://levels/level_two.tscn"),
+    preload("res://levels/level_three.tscn"),
 ]
 
-var show_main_menu := true
 var current_level_idx := 0
 var current_level_node = null
 var state_manager : StateManager = null
@@ -24,8 +25,7 @@ func reset() -> void:
 
 func load_level(level: PackedScene) -> void:
     if current_level_node:
-        current_level_node.queue_free()
-
+        remove_child(current_level_node)
     var instance = level.instantiate()
     instance.connect("coins_amount_updated", Callable(ui, "_on_coins_amount_updated"))
     instance.connect("keys_amount_updated", Callable(ui, "_on_keys_amount_updated"))
@@ -41,13 +41,14 @@ func load_level(level: PackedScene) -> void:
 
 func _on_game_over() -> void:
     remove_child(current_level_node)
+
     ui.change_ui("game_over_ui")
 
 func _on_level_finished() -> void:
     current_level_idx += 1
 
     if current_level_idx > len(levels) - 1:
-        current_level_node.queue_free()
+        remove_child(current_level_node)
         ui.change_ui("credits_menu_ui")
         return
 
