@@ -61,23 +61,3 @@ layer_6/tile_data = PackedInt32Array()
 
 [node name="Player" parent="." instance=ExtResource("7_5fa5m")]
 position = Vector2(36, 45)
-
-[connection signal="body_entered" from="TileMap/Coin" to="TileMap/Coin" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@205725" to="TileMap/@Coin@205725" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@205726" to="TileMap/@Coin@205726" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@205727" to="TileMap/@Coin@205727" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@205728" to="TileMap/@Coin@205728" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@205729" to="TileMap/@Coin@205729" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@205730" to="TileMap/@Coin@205730" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@205731" to="TileMap/@Coin@205731" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@205732" to="TileMap/@Coin@205732" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@205733" to="TileMap/@Coin@205733" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@205734" to="TileMap/@Coin@205734" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@205735" to="TileMap/@Coin@205735" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@205736" to="TileMap/@Coin@205736" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@205737" to="TileMap/@Coin@205737" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@205738" to="TileMap/@Coin@205738" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@205739" to="TileMap/@Coin@205739" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@205740" to="TileMap/@Coin@205740" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@205741" to="TileMap/@Coin@205741" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@205742" to="TileMap/@Coin@205742" method="_on_body_entered"]
