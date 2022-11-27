@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-signal player_hurt(pos: Vector2)
-signal player_died()
+signal hurt(pos: Vector2)
+signal died
 signal coin_picked_up(total_coins: int)
 signal key_picked_up(total_keys: int)
 
@@ -53,7 +53,6 @@ func _ready() -> void:
         HURT: Callable(self, "_hurt_state"),
         DEAD: Callable(self, "_dead_state"),
     }, MOVE)
-
 
 func _physics_process(delta: float) -> void:
     state_manager.physics_process(delta)
@@ -118,7 +117,7 @@ func _hurt_state(_delta: float) -> int:
         return state_manager.change_state(DEAD)
 
     @warning_ignore(return_value_discarded)
-    emit_signal("player_hurt", global_position, coins)
+    emit_signal("hurt", global_position, coins)
 
     coins = 0
 
@@ -183,7 +182,7 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 
 func _on_dead_timer_timeout() -> void:
     @warning_ignore(return_value_discarded)
-    emit_signal("player_died") # Replace with function body.
+    emit_signal("died") # Replace with function body.
 
 
 func _on_invulnerability_timer_timeout() -> void:

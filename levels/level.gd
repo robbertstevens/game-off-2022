@@ -4,7 +4,7 @@ signal coins_amount_updated(amount: int)
 signal keys_amount_updated(amount: int)
 signal level_started(name: String)
 signal level_finished
-signal game_over
+signal player_died
 
 var hit_coin_scn := preload("res://entities/hit_coin/hit_coin.tscn")
 var smoke_scn := preload("res://entities/smoke/smoke.tscn")
@@ -44,15 +44,17 @@ func _ready() -> void:
         exit.connect("door_entered", Callable(self, "_on_exit_entered"))
 
     @warning_ignore(return_value_discarded)
-    player.connect("player_hurt", Callable(self, "_on_Player_player_hurt"))
+    player.connect("hurt", Callable(self, "_on_Player_hurt"))
     @warning_ignore(return_value_discarded)
     player.connect("coin_picked_up", Callable(self, "_on_coin_picked_up"))
     @warning_ignore(return_value_discarded)
     player.connect("key_picked_up", Callable(self, "_on_key_picked_up"))
 
     @warning_ignore(return_value_discarded)
-    player.connect("player_died", Callable(self, "_on_player_died"))
+    player.connect("died", Callable(self, "_on_player_died"))
 
+    player.coins = 0
+    player.keys = 0
     # Set limits
     var map_limits = $TileMap.get_used_rect()
     var map_cellsize = $TileMap.tile_set.tile_size
@@ -82,10 +84,10 @@ func _on_exit_entered() -> void:
 
 func _on_player_died() -> void:
     @warning_ignore(return_value_discarded)
-    emit_signal("game_over")
+    emit_signal("player_died")
 
 # Respawn player at the start of the level or last checkpoint
-func _respawn_player() -> void:
+func _restart_level() -> void:
     pass
 
 
@@ -95,6 +97,7 @@ func _on_coin_picked_up(coins: int) -> void:
 
 
 func _on_key_picked_up(keys: int) -> void:
+    print(keys, "from level")
     @warning_ignore(return_value_discarded)
     emit_signal("keys_amount_updated", keys)
 
@@ -113,7 +116,7 @@ func spawn_key(pos: Vector2, _scale) -> void:
     key.connect("key_picked_up", Callable($Player, "_on_Key_key_picked_up"))
     add_child(key)
 
-func _on_Player_player_hurt(pos: Vector2, coins: int):
+func _on_Player_hurt(pos: Vector2, coins: int):
     for coin in range(0, coins):
         var c = hit_coin_scn.instantiate()
         c.global_position = pos

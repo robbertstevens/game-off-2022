@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d17kg1gux1tan"]
+[gd_scene load_steps=14 format=3 uid="uid://d17kg1gux1tan"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_dkk0x"]
 [ext_resource type="Script" path="res://ui/ui.gd" id="2_e3mey"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://uetq245fpbgg" path="res://assets/coin.png" id="4_ple1h"]
 [ext_resource type="Texture2D" uid="uid://q06oaklt7pru" path="res://assets/coin-side.png" id="5_hx6li"]
 [ext_resource type="Texture2D" uid="uid://ndrpqu35jqxp" path="res://assets/tiles_packed.png" id="6_s7du4"]
+[ext_resource type="Texture2D" uid="uid://erpppy4e1jq5" path="res://assets/player.png" id="7_rajp3"]
 
 [sub_resource type="Animation" id="Animation_2iift"]
 resource_name = "LEVEL_INTRO"
@@ -68,6 +69,10 @@ _data = {
 "RESET": SubResource("Animation_tu4n8")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_16n4e"]
+atlas = ExtResource("7_rajp3")
+region = Rect2(26, 5, 20, 19)
+
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_4j0j4"]
 frames = 2
 frame_0/texture = ExtResource("4_ple1h")
@@ -93,12 +98,14 @@ size_flags_vertical = 3
 theme = ExtResource("3_byakn")
 
 [node name="PanelContainer" type="PanelContainer" parent="UI/LevelStartedContainer"]
+layout_mode = 2
 offset_top = 53.0
 offset_right = 208.0
 offset_bottom = 99.0
 size_flags_vertical = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/LevelStartedContainer/PanelContainer"]
+layout_mode = 2
 offset_right = 208.0
 offset_bottom = 46.0
 theme_override_constants/margin_left = 20
@@ -106,6 +113,7 @@ theme_override_constants/margin_right = 20
 
 [node name="RichTextLabel" type="Label" parent="UI/LevelStartedContainer/PanelContainer/MarginContainer"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 20.0
 offset_right = 188.0
 offset_bottom = 46.0
@@ -124,14 +132,56 @@ offset_bottom = 23.0
 size_flags_vertical = 0
 theme = ExtResource("3_byakn")
 
+[node name="MarginContainer" type="MarginContainer" parent="UI/CoinCounterContainer"]
+layout_mode = 2
+offset_bottom = 23.0
+
+[node name="LivesCount" type="HBoxContainer" parent="UI/CoinCounterContainer"]
+layout_mode = 2
+offset_left = 4.0
+offset_right = 52.0
+offset_bottom = 23.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+alignment = 2
+
+[node name="KeyTexture" type="TextureRect" parent="UI/CoinCounterContainer/LivesCount"]
+layout_mode = 2
+offset_top = 2.0
+offset_right = 20.0
+offset_bottom = 21.0
+size_flags_vertical = 4
+theme = ExtResource("3_byakn")
+texture = SubResource("AtlasTexture_16n4e")
+stretch_mode = 2
+
+[node name="X" type="Label" parent="UI/CoinCounterContainer/LivesCount"]
+layout_mode = 2
+offset_left = 24.0
+offset_right = 34.0
+offset_bottom = 23.0
+size_flags_horizontal = 0
+text = "x"
+
+[node name="LivesAmount" type="Label" parent="UI/CoinCounterContainer/LivesCount"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 38.0
+offset_right = 48.0
+offset_bottom = 23.0
+text = "0"
+
 [node name="CoinsCount" type="HBoxContainer" parent="UI/CoinCounterContainer"]
-offset_right = 46.0
+layout_mode = 2
+offset_left = 56.0
+offset_right = 102.0
 offset_bottom = 23.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
 alignment = 2
 
 [node name="CoinTexture" type="TextureRect" parent="UI/CoinCounterContainer/CoinsCount"]
+layout_mode = 2
 offset_top = 2.0
 offset_right = 18.0
 offset_bottom = 20.0
@@ -141,6 +191,7 @@ texture = SubResource("AnimatedTexture_4j0j4")
 stretch_mode = 2
 
 [node name="X" type="Label" parent="UI/CoinCounterContainer/CoinsCount"]
+layout_mode = 2
 offset_left = 22.0
 offset_right = 32.0
 offset_bottom = 23.0
@@ -149,20 +200,23 @@ text = "x"
 
 [node name="CoinAmount" type="Label" parent="UI/CoinCounterContainer/CoinsCount"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 36.0
 offset_right = 46.0
 offset_bottom = 23.0
 text = "0"
 
 [node name="KeysCount" type="HBoxContainer" parent="UI/CoinCounterContainer"]
-offset_left = 50.0
-offset_right = 96.0
+layout_mode = 2
+offset_left = 106.0
+offset_right = 152.0
 offset_bottom = 23.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
 alignment = 2
 
 [node name="KeyTexture" type="TextureRect" parent="UI/CoinCounterContainer/KeysCount"]
+layout_mode = 2
 offset_top = 2.0
 offset_right = 18.0
 offset_bottom = 20.0
@@ -172,6 +226,7 @@ texture = SubResource("AtlasTexture_pwtdc")
 stretch_mode = 2
 
 [node name="X" type="Label" parent="UI/CoinCounterContainer/KeysCount"]
+layout_mode = 2
 offset_left = 22.0
 offset_right = 32.0
 offset_bottom = 23.0
@@ -180,6 +235,7 @@ text = "x"
 
 [node name="KeyAmount" type="Label" parent="UI/CoinCounterContainer/KeysCount"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 36.0
 offset_right = 46.0
 offset_bottom = 23.0
@@ -196,6 +252,7 @@ theme = ExtResource("3_byakn")
 alignment = 1
 
 [node name="GameName" type="Label" parent="UI/MainMenu"]
+layout_mode = 2
 offset_top = 64.0
 offset_right = 320.0
 offset_bottom = 87.0
@@ -203,6 +260,7 @@ text = "Game Off 2022"
 horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="UI/MainMenu"]
+layout_mode = 2
 offset_left = 135.0
 offset_top = 91.0
 offset_right = 185.0
@@ -222,6 +280,7 @@ theme = ExtResource("3_byakn")
 alignment = 1
 
 [node name="ThankYou" type="Label" parent="UI/CreditsMenu"]
+layout_mode = 2
 offset_top = 53.0
 offset_right = 320.0
 offset_bottom = 99.0
@@ -230,6 +289,7 @@ To GameOff 2022"
 horizontal_alignment = 1
 
 [node name="ReStartButton" type="Button" parent="UI/CreditsMenu"]
+layout_mode = 2
 offset_left = 125.0
 offset_top = 103.0
 offset_right = 195.0
@@ -249,6 +309,7 @@ theme = ExtResource("3_byakn")
 alignment = 1
 
 [node name="ThankYou" type="Label" parent="UI/GameOver"]
+layout_mode = 2
 offset_top = 64.0
 offset_right = 320.0
 offset_bottom = 87.0
@@ -256,6 +317,7 @@ text = "Game Over"
 horizontal_alignment = 1
 
 [node name="ReStartButton" type="Button" parent="UI/GameOver"]
+layout_mode = 2
 offset_left = 125.0
 offset_top = 91.0
 offset_right = 195.0
@@ -264,6 +326,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Restart"
 
+[connection signal="game_over" from="." to="." method="_on_game_over"]
 [connection signal="pressed" from="UI/MainMenu/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="UI/CreditsMenu/ReStartButton" to="." method="_on_re_start_button_pressed"]
 [connection signal="pressed" from="UI/GameOver/ReStartButton" to="." method="_on_re_start_button_pressed"]

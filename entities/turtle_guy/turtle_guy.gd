@@ -58,6 +58,7 @@ func _walk_state(delta: float) -> int:
             velocity.x = Vector2.LEFT.x * MOVE_SPEED
 
 
+    @warning_ignore(return_value_discarded)
     move_and_slide()
 
     return WALK
@@ -65,7 +66,7 @@ func _walk_state(delta: float) -> int:
 
 var flip_count = 0
 
-func _alerted_state(delta: float) -> int:
+func _alerted_state(_delta: float) -> int:
     if alerted_timer.is_stopped():
         _flip()
         alerted_timer.start()
@@ -81,19 +82,20 @@ func _alerted_state(delta: float) -> int:
     return ALERTED
 
 
-func _charge_state(delta: float) -> int:
+func _charge_state(_delta: float) -> int:
     emotes.hide()
     if wall_detect_ray_cast.is_colliding():
         return CONFUSED
 
     velocity.x = player_detect_ray_cast.target_position.normalized().x * 400
 
+    @warning_ignore(return_value_discarded)
     move_and_slide()
 
     return CHARGE
 
 
-func _confused_state(delta: float) -> int:
+func _confused_state(_delta: float) -> int:
     if confused_timer.is_stopped():
         hit()
         confused_timer.start()
@@ -115,6 +117,7 @@ func _flip() -> void:
 
 
 func _on_confused_timer_timeout() -> void:
+    @warning_ignore(return_value_discarded)
     state_manager.change_state(WALK)
 
 
@@ -128,5 +131,6 @@ func hit() -> void:
 
 
 func die() -> void:
+    @warning_ignore(return_value_discarded)
     emit_signal("boss_died", global_position, animation.scale)
     queue_free()

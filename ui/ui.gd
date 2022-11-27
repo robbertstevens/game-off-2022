@@ -24,3 +24,6 @@ func _on_level_started(level_name: String) -> void:
     $LevelStartedContainer/AnimationPlayer.play("LEVEL_INTRO")
     await $LevelStartedContainer/AnimationPlayer.animation_finished
     $CoinCounterContainer.show()
+
+func _on_player_lives_changed(lives: int) -> void:
+    %LivesAmount.text = str(lives)
