@@ -20,27 +20,37 @@ func _ready() -> void:
     await get_tree().process_frame
 
     for coin in get_tree().get_nodes_in_group("coins"):
+        @warning_ignore(return_value_discarded)
         coin.connect("coin_picked_up", Callable($Player, "_on_Coin_coin_picked_up"))
 
     for key in get_tree().get_nodes_in_group("keys"):
+        @warning_ignore(return_value_discarded)
         key.connect("key_picked_up", Callable($Player, "_on_Key_key_picked_up"))
 
     for boss in get_tree().get_nodes_in_group("bosses"):
+        @warning_ignore(return_value_discarded)
         boss.connect("boss_died", Callable(self, "spawn_smoke"))
+        @warning_ignore(return_value_discarded)
         boss.connect("boss_died", Callable(self, "spawn_key"))
 
     for monster in get_tree().get_nodes_in_group("monsters"):
+        @warning_ignore(return_value_discarded)
         monster.connect("monster_died", Callable(self, "spawn_smoke"))
 
     var exit = get_tree().get_first_node_in_group("exit")
 
     if exit:
+        @warning_ignore(return_value_discarded)
         exit.connect("door_entered", Callable(self, "_on_exit_entered"))
 
+    @warning_ignore(return_value_discarded)
     player.connect("player_hurt", Callable(self, "_on_Player_player_hurt"))
+    @warning_ignore(return_value_discarded)
     player.connect("coin_picked_up", Callable(self, "_on_coin_picked_up"))
+    @warning_ignore(return_value_discarded)
     player.connect("key_picked_up", Callable(self, "_on_key_picked_up"))
 
+    @warning_ignore(return_value_discarded)
     player.connect("player_died", Callable(self, "_on_player_died"))
 
     # Set limits
@@ -52,11 +62,13 @@ func _ready() -> void:
     camera.limit_top = -99999999 #map_limits.position.y * map_cellsize.y
     camera.limit_bottom = map_limits.end.y * map_cellsize.y
 
+    @warning_ignore(return_value_discarded)
     emit_signal("coins_amount_updated", 0)
+    @warning_ignore(return_value_discarded)
     emit_signal("level_started", level_name)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
     # State 2 is 'DEAD'
     if player.state_manager.is_state(2):
         return
@@ -64,10 +76,12 @@ func _physics_process(delta: float) -> void:
     camera.global_position = lerp(camera.global_position, player.global_position, .7)
 
 func _on_exit_entered() -> void:
+    @warning_ignore(return_value_discarded)
     emit_signal("level_finished")
 
 
 func _on_player_died() -> void:
+    @warning_ignore(return_value_discarded)
     emit_signal("game_over")
 
 # Respawn player at the start of the level or last checkpoint
@@ -76,23 +90,26 @@ func _respawn_player() -> void:
 
 
 func _on_coin_picked_up(coins: int) -> void:
+    @warning_ignore(return_value_discarded)
     emit_signal("coins_amount_updated", coins)
 
 
 func _on_key_picked_up(keys: int) -> void:
+    @warning_ignore(return_value_discarded)
     emit_signal("keys_amount_updated", keys)
 
 
-func spawn_smoke(pos: Vector2, scale = Vector2(1, 1)) -> void:
+func spawn_smoke(pos: Vector2, smoke_scale = Vector2(1, 1)) -> void:
     var smoke = smoke_scn.instantiate()
     smoke.global_position = pos
-    smoke.scale = scale
+    smoke.scale = smoke_scale
     add_child(smoke)
 
 
 func spawn_key(pos: Vector2, _scale) -> void:
     var key = key_scn.instantiate()
     key.global_position = pos
+    @warning_ignore(return_value_discarded)
     key.connect("key_picked_up", Callable($Player, "_on_Key_key_picked_up"))
     add_child(key)
 

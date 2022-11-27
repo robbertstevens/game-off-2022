@@ -35,6 +35,7 @@ var coins := 0 :
         return coins
     set(value):
         coins = value
+        @warning_ignore(return_value_discarded)
         emit_signal("coin_picked_up", coins)
 
 var keys := 0 :
@@ -42,6 +43,7 @@ var keys := 0 :
         return keys
     set(value):
         keys = value
+        @warning_ignore(return_value_discarded)
         emit_signal("key_picked_up", keys)
 
 
@@ -102,18 +104,20 @@ func _move_state(delta: float) -> int:
                         keys -= 1
                         collider.unlock()
 
+    @warning_ignore(return_value_discarded)
     move_and_slide()
 
     return MOVE
 
 
-func _hurt_state(delta: float) -> int:
+func _hurt_state(_delta: float) -> int:
     can_be_hurt = false
 
     if coins == 0:
         dead_pos = global_position
         return state_manager.change_state(DEAD)
 
+    @warning_ignore(return_value_discarded)
     emit_signal("player_hurt", global_position, coins)
 
     coins = 0
@@ -125,7 +129,7 @@ func _hurt_state(delta: float) -> int:
 
 var dead_pos: Vector2
 
-func _dead_state(delta: float) -> int:
+func _dead_state(_delta: float) -> int:
     if dead_timer.is_stopped():
         dead_timer.start()
 
@@ -173,10 +177,12 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
         if body.has_method("hit"):
             body.hit()
     else:
+        @warning_ignore(return_value_discarded)
         state_manager.change_state(HURT)
 
 
 func _on_dead_timer_timeout() -> void:
+    @warning_ignore(return_value_discarded)
     emit_signal("player_died") # Replace with function body.
 
 

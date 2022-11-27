@@ -36,5 +36,5 @@ func _move_right_state(delta: float) -> int:
     return RIGHT
 
 
-func _on_fly_monster_died(pos) -> void:
+func _on_fly_monster_died(_pos: Vector2) -> void:
     queue_free()

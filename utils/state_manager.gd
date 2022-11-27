@@ -6,9 +6,10 @@ var current_state: int
 var previous_state: int
 var debug := false
 
-func _init(states: Dictionary, starting_state: int, debug = false) -> void:
+func _init(states: Dictionary, starting_state: int, debug_value = false) -> void:
     _states = states
-    debug = debug
+    debug = debug_value
+    @warning_ignore(return_value_discarded)
     change_state(starting_state)
 
 func change_state(new_state: int) -> int:
@@ -23,9 +24,11 @@ func change_state(new_state: int) -> int:
 func physics_process(delta: float) -> void:
     var process_func = _get_state_fn(current_state)
 
+    @warning_ignore(redundant_await)
     var new_state = await process_func.callv([delta])
 
     if not new_state == current_state:
+        @warning_ignore(return_value_discarded)
         change_state(new_state)
 
 
