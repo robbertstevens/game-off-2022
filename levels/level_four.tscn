@@ -5,43 +5,43 @@
 [ext_resource type="PackedScene" uid="uid://bb2y6ldepgfpc" path="res://entities/fly/fly.tscn" id="4_oikvl"]
 [ext_resource type="PackedScene" uid="uid://c3813yy8mnue2" path="res://entities/player/player.tscn" id="7_5fa5m"]
 
-[sub_resource type="Curve2D" id="Curve2D_vklrt"]
+[sub_resource type="Curve2D" id="Curve2D_1od8a"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 674, 116, 0, 0, 0, 0, 674, 62)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_xg4c2"]
+[sub_resource type="Curve2D" id="Curve2D_1wevh"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 710, 62, 0, 0, 0, 0, 710, 116)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_pqwqr"]
+[sub_resource type="Curve2D" id="Curve2D_u8p8j"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 746, 116, 0, 0, 0, 0, 746, 62)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_rc6d4"]
+[sub_resource type="Curve2D" id="Curve2D_o17k1"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 783, 63, 0, 0, 0, 0, 783, 117)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_ksoa3"]
+[sub_resource type="Curve2D" id="Curve2D_i2xcv"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -396, -9, 0, 0, 0, 0, -333, -9)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_g4f6l"]
+[sub_resource type="Curve2D" id="Curve2D_dgf52"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -261, 18, 0, 0, 0, 0, -324, 18)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_xqigb"]
+[sub_resource type="Curve2D" id="Curve2D_io4ms"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 153, 9, 0, 0, 0, 0, 216, 9)
 }
@@ -107,26 +107,26 @@ position = Vector2(-36, 108)
 
 [node name="FlyPath" parent="." instance=ExtResource("4_oikvl")]
 position = Vector2(1, 1)
-curve = SubResource("Curve2D_vklrt")
+curve = SubResource("Curve2D_1od8a")
 
 [node name="FlyPath2" parent="." instance=ExtResource("4_oikvl")]
 position = Vector2(1, 1)
-curve = SubResource("Curve2D_xg4c2")
+curve = SubResource("Curve2D_1wevh")
 
 [node name="FlyPath3" parent="." instance=ExtResource("4_oikvl")]
 position = Vector2(1, 1)
-curve = SubResource("Curve2D_pqwqr")
+curve = SubResource("Curve2D_u8p8j")
 
 [node name="FlyPath4" parent="." instance=ExtResource("4_oikvl")]
-curve = SubResource("Curve2D_rc6d4")
+curve = SubResource("Curve2D_o17k1")
 
 [node name="FlyPath5" parent="." instance=ExtResource("4_oikvl")]
 position = Vector2(405, -36)
-curve = SubResource("Curve2D_ksoa3")
+curve = SubResource("Curve2D_i2xcv")
 
 [node name="FlyPath6" parent="." instance=ExtResource("4_oikvl")]
 position = Vector2(405, -36)
-curve = SubResource("Curve2D_g4f6l")
+curve = SubResource("Curve2D_dgf52")
 
 [node name="FlyPath7" parent="." instance=ExtResource("4_oikvl")]
-curve = SubResource("Curve2D_xqigb")
+curve = SubResource("Curve2D_io4ms")

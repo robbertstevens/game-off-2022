@@ -77,9 +77,9 @@ position = Vector2(171, 531)
 position = Vector2(-81, 639)
 
 [connection signal="body_entered" from="TileMap/Coin" to="TileMap/Coin" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@128837" to="TileMap/@Coin@128837" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@128839" to="TileMap/@Coin@128839" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@128842" to="TileMap/@Coin@128842" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@128843" to="TileMap/@Coin@128843" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@128844" to="TileMap/@Coin@128844" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Coin@128845" to="TileMap/@Coin@128845" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@17703" to="TileMap/@Coin@17703" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@17705" to="TileMap/@Coin@17705" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@17708" to="TileMap/@Coin@17708" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@17709" to="TileMap/@Coin@17709" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@17710" to="TileMap/@Coin@17710" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Coin@17711" to="TileMap/@Coin@17711" method="_on_body_entered"]
